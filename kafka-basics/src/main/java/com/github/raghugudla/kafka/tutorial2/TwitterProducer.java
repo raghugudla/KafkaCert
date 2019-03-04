@@ -35,11 +35,11 @@ public class TwitterProducer {
     private String token;
     private String secret;
 
-    private List<String> terms = Lists.newArrayList("telangana", "kafka");
+    private List<String> terms = Lists.newArrayList("telangana", "hyderabad", "kafka", "java", "india");
 
     private TwitterProducer() throws Exception {
         Properties properties = new Properties();
-        properties.load(new FileReader("kafka-producer-twitter/src/main/resources/twitter.properties"));
+        properties.load(new FileReader("kafka-basics/src/main/resources/twitter.properties"));
         consumerKey = properties.getProperty("consumerKey");
         consumerSecret = properties.getProperty("consumerSecret");
         token = properties.getProperty("token");
@@ -86,7 +86,7 @@ public class TwitterProducer {
             }
             if (msg != null){
                 logger.info(msg);
-                producer.send(new ProducerRecord<>("twitter_tweets", null, msg), (recordMetadata, e) -> {
+                producer.send(new ProducerRecord<>("twitter-tweets", null, msg), (recordMetadata, e) -> {
                     if (e != null) {
                         logger.error("Something bad happened", e);
                     }

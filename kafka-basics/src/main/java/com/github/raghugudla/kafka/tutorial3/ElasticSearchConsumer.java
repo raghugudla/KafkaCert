@@ -6,7 +6,6 @@ import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.CredentialsProvider;
 import org.apache.http.impl.client.BasicCredentialsProvider;
-import org.apache.http.impl.nio.client.HttpAsyncClientBuilder;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
@@ -23,11 +22,8 @@ import org.elasticsearch.common.xcontent.XContentType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 import java.time.Duration;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Properties;
 
@@ -48,12 +44,14 @@ public class ElasticSearchConsumer {
         //////////////////////////
 
         Properties properties = new Properties();
-        properties.load(new FileReader("kafka-consumer-elasticsearch/src/main/resources/bonsai.properties"));
+        properties.load(new FileReader("kafka-basics/src/main/resources/bonsai.properties"));
 
         // replace with your own credentials
         String hostname = properties.getProperty("hostname"); // localhost or bonsai url
         String username = properties.getProperty("username"); // needed only for bonsai
         String password = properties.getProperty("password"); // needed only for bonsai
+
+        System.out.println("hostname = " + hostname + ", username = " + username + ", password = " + password);
 
         // credentials provider help supply username and password
         final CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
@@ -107,7 +105,7 @@ public class ElasticSearchConsumer {
         Logger logger = LoggerFactory.getLogger(ElasticSearchConsumer.class.getName());
         RestHighLevelClient client = createClient();
 
-        KafkaConsumer<String, String> consumer = createConsumer("twitter_tweets");
+        KafkaConsumer<String, String> consumer = createConsumer("twitter-tweets");
 
         while(true){
             ConsumerRecords<String, String> records =

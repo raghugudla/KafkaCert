@@ -1,6 +1,8 @@
 package com.github.raghugudla.kafka.tutorial1;
 
-import org.apache.kafka.clients.producer.*;
+import org.apache.kafka.clients.producer.KafkaProducer;
+import org.apache.kafka.clients.producer.ProducerConfig;
+import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,14 +31,12 @@ public class ProducerDemoWithCallback {
             ProducerRecord<String, String> record = new ProducerRecord<String, String>("first_topic", "hello world from java-"+i);
 
             //send data
-            producer.send(record, new Callback() {
-                public void onCompletion(RecordMetadata recordMetadata, Exception e) {
-                    if(e == null) {
-                        logger.info("Received new metadata. Topic: " + recordMetadata.topic() + ", Timestamp: " + recordMetadata.timestamp());
-                    }
-                    else {
-                        logger.info("err " + e);
-                    }
+            producer.send(record, (recordMetadata, e) -> {
+                if(e == null) {
+                    logger.info("Received new metadata. Topic: " + recordMetadata.topic() + ", Timestamp: " + recordMetadata.timestamp());
+                }
+                else {
+                    logger.info("err " + e);
                 }
             });
         }

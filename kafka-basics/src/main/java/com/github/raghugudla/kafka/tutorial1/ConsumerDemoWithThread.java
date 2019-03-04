@@ -10,7 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.time.Duration;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.Properties;
 import java.util.concurrent.CountDownLatch;
 
@@ -36,7 +36,7 @@ public class ConsumerDemoWithThread {
 
         // create the consumer runnable
         logger.info("Creating the consumer thread");
-        Runnable myConsumerRunnable = new ConsumerRunnable(
+        ConsumerRunnable myConsumerRunnable = new ConsumerRunnable(
                 bootstrapServers,
                 groupId,
                 topic,
@@ -50,7 +50,7 @@ public class ConsumerDemoWithThread {
         // add a shutdown hook
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             logger.info("Caught shutdown hook");
-            ((ConsumerRunnable) myConsumerRunnable).shutdown();
+            myConsumerRunnable.shutdown();
             try {
                 latch.await();
             } catch (InterruptedException e) {
@@ -93,7 +93,7 @@ public class ConsumerDemoWithThread {
             // create consumer
             consumer = new KafkaConsumer<String, String>(properties);
             // subscribe consumer to our topic(s)
-            consumer.subscribe(Arrays.asList(topic));
+            consumer.subscribe(Collections.singletonList(topic));
         }
 
         @Override

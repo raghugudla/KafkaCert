@@ -10,7 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.time.Duration;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.Properties;
 
 public class ConsumerDemoAssignSeek {
@@ -37,7 +37,7 @@ public class ConsumerDemoAssignSeek {
         // assign
         TopicPartition partitionToReadFrom = new TopicPartition(topic, 0);
         long offsetToReadFrom = 15L;
-        consumer.assign(Arrays.asList(partitionToReadFrom));
+        consumer.assign(Collections.singletonList(partitionToReadFrom));
 
         // seek
         consumer.seek(partitionToReadFrom, offsetToReadFrom);
