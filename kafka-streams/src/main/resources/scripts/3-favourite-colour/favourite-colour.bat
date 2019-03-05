@@ -9,14 +9,7 @@ bin\windows\kafka-topics.bat --create --zookeeper localhost:2181 --replication-f
 
 
 rem launch a Kafka consumer
-bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 ^
-    --topic favourite-colour-output ^
-    --from-beginning ^
-    --formatter kafka.tools.DefaultMessageFormatter ^
-    --property print.key=true ^
-    --property print.value=true ^
-    --property key.deserializer=org.apache.kafka.common.serialization.StringDeserializer ^
-    --property value.deserializer=org.apache.kafka.common.serialization.LongDeserializer
+bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic favourite-colour-output --from-beginning --formatter kafka.tools.DefaultMessageFormatter --property print.key=true --property print.value=true --property key.deserializer=org.apache.kafka.common.serialization.StringDeserializer --property value.deserializer=org.apache.kafka.common.serialization.LongDeserializer
 
 rem launch the streams application
 
