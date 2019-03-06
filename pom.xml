@@ -23,6 +23,7 @@
     <modules>
         <module>kafka-basics</module>
         <module>kafka-streams</module>
+        <module>kafka-schema-registry-rest-proxy</module>
     </modules>
 
     <dependencies>
