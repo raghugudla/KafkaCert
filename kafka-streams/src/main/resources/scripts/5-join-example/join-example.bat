@@ -10,23 +10,12 @@ bin\windows\kafka-topics.bat --create --zookeeper localhost:2181 --replication-f
 rem create out topic for user purchases enriched with user data (inner join)
 bin\windows\kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 3 --topic user-purchases-enriched-inner-join
 
+kafka-console-consumer --bootstrap-server localhost:9092 --topic user-purchases --from-beginning
+kafka-console-consumer --bootstrap-server localhost:9092 --topic user-table --from-beginning
+
 rem start a consumer on the output topic (left join)
-bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 ^
-    --topic user-purchases-enriched-left-join ^
-    --from-beginning ^
-    --formatter kafka.tools.DefaultMessageFormatter ^
-    --property print.key=true ^
-    --property print.value=true ^
-    --property key.deserializer=org.apache.kafka.common.serialization.StringDeserializer ^
-    --property value.deserializer=org.apache.kafka.common.serialization.StringDeserializer
+bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic user-purchases-enriched-left-join --from-beginning --formatter kafka.tools.DefaultMessageFormatter --property print.key=true --property print.value=true --property key.deserializer=org.apache.kafka.common.serialization.StringDeserializer --property value.deserializer=org.apache.kafka.common.serialization.StringDeserializer
 
 
 rem start a consumer on the output topic (inner join)
-bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 ^
-    --topic user-purchases-enriched-inner-join ^
-    --from-beginning ^
-    --formatter kafka.tools.DefaultMessageFormatter ^
-    --property print.key=true ^
-    --property print.value=true ^
-    --property key.deserializer=org.apache.kafka.common.serialization.StringDeserializer ^
-    --property value.deserializer=org.apache.kafka.common.serialization.StringDeserializer
+bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic user-purchases-enriched-inner-join --from-beginning --formatter kafka.tools.DefaultMessageFormatter --property print.key=true --property print.value=true --property key.deserializer=org.apache.kafka.common.serialization.StringDeserializer --property value.deserializer=org.apache.kafka.common.serialization.StringDeserializer
