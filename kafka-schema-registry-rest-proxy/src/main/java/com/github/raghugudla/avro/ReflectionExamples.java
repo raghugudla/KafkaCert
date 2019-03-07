@@ -1,5 +1,6 @@
-package com.github.raghugudla.avro.reflection;
+package com.github.raghugudla.avro;
 
+import com.github.raghugudla.avro.ReflectedCustomer;
 import org.apache.avro.Schema;
 import org.apache.avro.file.CodecFactory;
 import org.apache.avro.file.DataFileReader;

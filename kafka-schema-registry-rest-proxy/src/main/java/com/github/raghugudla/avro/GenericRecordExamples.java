@@ -1,4 +1,4 @@
-package com.github.raghugudla.avro.generic;
+package com.github.raghugudla.avro;
 
 import org.apache.avro.AvroRuntimeException;
 import org.apache.avro.Schema;

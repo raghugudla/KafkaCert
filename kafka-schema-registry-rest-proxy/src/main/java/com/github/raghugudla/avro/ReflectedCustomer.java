@@ -1,4 +1,4 @@
-package com.github.raghugudla.avro.reflection;
+package com.github.raghugudla.avro;
 
 import org.apache.avro.reflect.Nullable;
 

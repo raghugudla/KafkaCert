@@ -1,6 +1,6 @@
-package com.github.raghugudla.avro.specific;
+package com.github.raghugudla.avro;
 
-import com.example.Customer;
+import com.example.avro.Customer;
 import org.apache.avro.file.DataFileReader;
 import org.apache.avro.file.DataFileWriter;
 import org.apache.avro.io.DatumReader;

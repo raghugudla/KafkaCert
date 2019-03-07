@@ -1,7 +1,7 @@
-package com.github.raghugudla.avro.evolution;
+package com.github.raghugudla.avro;
 
-import com.example.CustomerV1;
-import com.example.CustomerV2;
+import com.example.avro.CustomerV1;
+import com.example.avro.CustomerV2;
 import org.apache.avro.file.DataFileReader;
 import org.apache.avro.file.DataFileWriter;
 import org.apache.avro.io.DatumReader;
