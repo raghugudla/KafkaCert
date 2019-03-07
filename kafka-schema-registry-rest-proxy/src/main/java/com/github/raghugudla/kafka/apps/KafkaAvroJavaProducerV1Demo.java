@@ -2,7 +2,9 @@ package com.github.raghugudla.kafka.apps;
 
 import com.example.kafka.Customer;
 import io.confluent.kafka.serializers.KafkaAvroSerializer;
-import org.apache.kafka.clients.producer.*;
+import org.apache.kafka.clients.producer.KafkaProducer;
+import org.apache.kafka.clients.producer.Producer;
+import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.serialization.StringSerializer;
 
 import java.util.Properties;
@@ -39,14 +41,12 @@ public class KafkaAvroJavaProducerV1Demo {
         );
 
         System.out.println(customer);
-        producer.send(producerRecord, new Callback() {
-            @Override
-            public void onCompletion(RecordMetadata metadata, Exception exception) {
-                if (exception == null) {
-                    System.out.println(metadata);
-                } else {
-                    exception.printStackTrace();
-                }
+
+        producer.send(producerRecord, (metadata, exception) -> {
+            if (exception == null) {
+                System.out.println(metadata);
+            } else {
+                exception.printStackTrace();
             }
         });
 
