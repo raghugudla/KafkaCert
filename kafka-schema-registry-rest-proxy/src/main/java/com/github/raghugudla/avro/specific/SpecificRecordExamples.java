@@ -32,7 +32,7 @@ public class SpecificRecordExamples {
         final DatumWriter<Customer> datumWriter = new SpecificDatumWriter<>(Customer.class);
 
         try (DataFileWriter<Customer> dataFileWriter = new DataFileWriter<>(datumWriter)) {
-            dataFileWriter.create(customer.getSchema(), new File("customer-specific.avro"));
+            dataFileWriter.create(customer.getSchema(), new File("kafka-schema-registry-rest-proxy/target/customer-specific.avro"));
             dataFileWriter.append(customer);
             System.out.println("successfully wrote customer-specific.avro");
         } catch (IOException e){
@@ -41,7 +41,7 @@ public class SpecificRecordExamples {
 
 
         // read it from a file
-        final File file = new File("customer-specific.avro");
+        final File file = new File("kafka-schema-registry-rest-proxy/target/customer-specific.avro");
         final DatumReader<Customer> datumReader = new SpecificDatumReader<>(Customer.class);
         final DataFileReader<Customer> dataFileReader;
         try {
@@ -59,7 +59,7 @@ public class SpecificRecordExamples {
 
         // note, we can read our other customer generated using the generic method!
         // end of the day, no matter the method, Avro is Avro!
-        final File fileGeneric = new File("customer-generic.avro");
+        final File fileGeneric = new File("kafka-schema-registry-rest-proxy/target/customer-generic.avro");
         final DatumReader<Customer> datumReaderGeneric = new SpecificDatumReader<>(Customer.class);
         final DataFileReader<Customer> dataFileReaderGeneric;
         try {

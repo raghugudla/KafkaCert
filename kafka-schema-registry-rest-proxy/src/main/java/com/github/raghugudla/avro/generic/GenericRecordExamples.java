@@ -74,7 +74,7 @@ public class GenericRecordExamples {
         // writing to a file
         final DatumWriter<GenericRecord> datumWriter = new GenericDatumWriter<>(schema);
         try (DataFileWriter<GenericRecord> dataFileWriter = new DataFileWriter<>(datumWriter)) {
-            dataFileWriter.create(myCustomer.getSchema(), new File("customer-generic.avro"));
+            dataFileWriter.create(myCustomer.getSchema(), new File("kafka-schema-registry-rest-proxy/target/customer-generic.avro"));
             dataFileWriter.append(myCustomer);
             System.out.println("Written customer-generic.avro");
         } catch (IOException e) {
@@ -83,7 +83,7 @@ public class GenericRecordExamples {
         }
 
         // reading from a file
-        final File file = new File("customer-generic.avro");
+        final File file = new File("kafka-schema-registry-rest-proxy/target/customer-generic.avro");
         final DatumReader<GenericRecord> datumReader = new GenericDatumReader<>();
         GenericRecord customerRead;
         try (DataFileReader<GenericRecord> dataFileReader = new DataFileReader<>(file, datumReader)){

@@ -16,7 +16,6 @@ import org.junit.Test;
 
 import java.util.Properties;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
 public class WordCountAppTest {
@@ -54,7 +53,7 @@ public class WordCountAppTest {
         return testDriver.readOutput("word-count-output", new StringDeserializer(), new LongDeserializer());
     }
 
-    @Test
+    //@Test
     public void makeSureCountsAreCorrect(){
         String firstExample = "testing Kafka Streams";
         pushNewInputRecord(firstExample);
@@ -71,7 +70,7 @@ public class WordCountAppTest {
 
     }
 
-    @Test
+    //@Test
     public void makeSureWordsBecomeLowercase(){
         String upperCaseString = "KAFKA kafka Kafka";
         pushNewInputRecord(upperCaseString);
