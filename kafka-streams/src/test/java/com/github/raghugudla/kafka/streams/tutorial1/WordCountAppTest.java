@@ -12,7 +12,6 @@ import org.apache.kafka.streams.test.ConsumerRecordFactory;
 import org.apache.kafka.streams.test.OutputVerifier;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Test;
 
 import java.util.Properties;
 
